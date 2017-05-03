@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<!-- Number will be format as telephone number when browser is Weixin -->
+<meta name="format-detection" content="telephone = no" />
+
+<title>Red Blue Ball</title>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.js"></script>
+<!-- jQuery for form validation -->
+<!-- <script src="__PUBLIC__/jquery-validation/dist/jquery.validate.js" type="text/javascript" charset="utf-8"></script> -->
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+ul {
+    padding-left: 0px;
+}
+
+li {
+    width: 26px;
+    height: 52px;
+    float: left;
+    line-height: 26px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 0 0 6px;
+    display: inline;
+    background: url(image/ballBack.gif) no-repeat -79px -76px;
+    padding: 0;
+    list-style: none;
+}
+
+.redBall {
+    background-position: 0 -76px;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <h3>This is used JQuery and bootstrap.</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row text-left" style="margin-left: -9px; margin-bottom: 10px;">select red ball</div>
+                <div id="redBall1" class="row">
+                    <!--  Red ball 01 to 11 -->
+                </div>
+                <div id="redBall2" class="row">
+                    <!--  Red ball 12 to 22 -->
+                </div>
+                <div id="redBall3" class="row">
+                    <!-- Red ball 23 to 33 -->
+                </div>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2">
+                <div class="row text-left" style="margin-left: -9px; margin-bottom: 10px;">select blue ball</div>
+                <div id="blueBall1" class="row">
+                    <!--  Blue ball 01 to 06 -->
+                </div>
+                <div id="blueBall2" class="row">
+                    <!-- Blue ball 07 to 12 -->
+                </div>
+                <div id="blueBall3" class="row">
+                    <!--  Blue ball 13 to 16 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#redBall1").append("<ul></ul>");
+        $("#redBall2").append("<ul></ul>");
+        $("#redBall3").append("<ul></ul>");
+
+        for (var i = 1; i <= 33; i++) {
+            if (i < 12) {
+                // 01 to 11
+                $("#redBall1").find("ul").append("<li><span>" + i + "</li></span>");
+            } else if (i < 23) {
+                // 12 to 22
+                $("#redBall2").find("ul").append("<li><span>" + i + "</li></span>");
+            } else {
+                // 23 to 33
+                $("#redBall3").find("ul").append("<li><span>" + i + "</li></span>");
+            }
+        }
+
+        $("#blueBall1").append("<ul></ul>");
+        $("#blueBall2").append("<ul></ul>");
+        $("#blueBall3").append("<ul></ul>");
+        for (var i = 1; i <= 16; i++) {
+            if (i < 7) {
+                // 01 to 07
+                $("#blueBall1").find("ul").append("<li><span>" + i + "</li></span>");
+            } else if (i < 13) {
+                // 07  to 12
+                $("#blueBall2").find("ul").append("<li><span>" + i + "</li></span>");
+            } else {
+                // 13 to 16
+                $("#blueBall3").find("ul").append("<li><span>" + i + "</li></span>");
+            }
+        }
+    });
+</script>
+</html>

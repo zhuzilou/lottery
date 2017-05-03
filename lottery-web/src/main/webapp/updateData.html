@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="updateDataApp">
+<head>
+<meta charset="UTF-8">
+<title>Update double color ball record</title>
+<!-- Angular JS -->
+<script src="js/angular.js"></script>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-controller="updateDataCtrl">
+	<div class="container">
+		Thanks for <a href="http://api.opencai.net/apifree/">开彩网</a> supply new data for us.<br/>
+		Format: "http://f.apiplus.cn/[lotteryCode]-[return lines].json"<br/>
+		Example: "http://f.apiplus.cn/ssq.json" (Default return line is 5 lines)
+
+		<div class="row">
+			<button type="button" class="btn btn-primary btn-sm" ng-click="back()">Go Back</button>
+		</div>
+		<div>
+		{{message}}
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var updateDataApp = angular.module('updateDataApp', []);
+updateDataApp.controller('updateDataCtrl', ['$scope', '$http', function($scope, $http){
+	//Get JSONP data
+	$scope.reqData = [];
+	$http.jsonp("http://f.apiplus.cn/ssq.jsoncallback=JSON_CALLBACK")
+	.success(function(data){
+		$scope.reqData = data;
+		$scope.transfer();
+	}).error(function(data){
+		alert("fail: " + data);
+	});
+	
+	//Transfer data to action
+	$scope.transfer = function(){
+		$http({
+			method : "POST",
+			url : "updateData.do",
+			params : $scope.reqData.data
+		}).success(function(data){
+			$scope.message = data;
+		}).error(function(data){
+			$scope.message = data;
+		});
+	};
+	
+	$scope.back = function() {
+		window.history.back();
+	}
+}]);
+</script>
+</html>
